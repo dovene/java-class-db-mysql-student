@@ -41,6 +41,8 @@ public class Student {
         this.lastName = lastName;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "Student [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + "]";
+    }
 }
