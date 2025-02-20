@@ -14,7 +14,7 @@ public class StudentDAOImpl implements StudentDAO {
     public boolean addStudent(Student student) throws ClassNotFoundException, SQLException {
         StudentDBConfig studentDBConfig = new StudentDBConfig();
         Connection connection = studentDBConfig.getConnection();
-        String insertionQuery = "INSERT INTO studnet (id, firstName, lastName) VALUES (?, ?, ?)";
+        String insertionQuery = "INSERT INTO student (id, firstName, lastName) VALUES (?, ?, ?)";
         PreparedStatement preparedStatement = connection.prepareStatement(insertionQuery);
         preparedStatement.setInt(1, student.getId());
         preparedStatement.setString(2, student.getFirstName());
@@ -29,7 +29,7 @@ public class StudentDAOImpl implements StudentDAO {
         ArrayList<Student> students = new ArrayList<>();
         Connection connection = new StudentDBConfig().getConnection();
         Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM studnet");
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM student");
         while (resultSet.next()) {
             Student student = new Student();
             student.setId(resultSet.getInt("id"));
