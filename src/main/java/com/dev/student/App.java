@@ -1,4 +1,4 @@
-package com.dev;
+package com.dev.student;
 
 import java.util.Random;
 
