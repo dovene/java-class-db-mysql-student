@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.List;
 
 public class StudentDAOImpl implements StudentDAO {
 
@@ -42,7 +41,5 @@ public class StudentDAOImpl implements StudentDAO {
         connection.close();
         return students;
     }
-
-
     
 }
