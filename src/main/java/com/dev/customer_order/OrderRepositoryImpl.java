@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.dev.config.DatabaseConfig;
+
 public class OrderRepositoryImpl implements OrderRepository {
 
     @Override
@@ -79,7 +81,7 @@ public class OrderRepositoryImpl implements OrderRepository {
 
     @Override
     public List<Customer> getTop3CustomersByTotalOrders() throws ClassNotFoundException, SQLException {
-        // We need a JOIN on customers + orders to sum up total_amount by customer
+        
         String sql = 
             "SELECT c.id, c.name, c.email, SUM(o.total_amount) as totalSpent " +
             "FROM customers c " +
@@ -99,8 +101,6 @@ public class OrderRepositoryImpl implements OrderRepository {
             int id = rs.getInt("id");
             String name = rs.getString("name");
             String email = rs.getString("email");
-            // double totalSpent = rs.getDouble("totalSpent"); // if you want to display it
-
             topCustomers.add(new Customer(id, name, email));
         }
 

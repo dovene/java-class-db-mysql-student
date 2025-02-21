@@ -7,12 +7,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import com.dev.config.DatabaseConfig;
+
 public class StudentDAOImpl implements StudentDAO {
 
     @Override
     public boolean addStudent(Student student) throws ClassNotFoundException, SQLException {
-        StudentDBConfig studentDBConfig = new StudentDBConfig();
-        Connection connection = studentDBConfig.getConnection();
+        DatabaseConfig databaseConfig = new DatabaseConfig();
+        Connection connection = databaseConfig.getConnection();
         String insertionQuery = "INSERT INTO student (id, firstName, lastName) VALUES (?, ?, ?)";
         PreparedStatement preparedStatement = connection.prepareStatement(insertionQuery);
         preparedStatement.setInt(1, student.getId());
@@ -26,7 +28,7 @@ public class StudentDAOImpl implements StudentDAO {
     @Override
     public ArrayList<Student> getAllStudents() throws ClassNotFoundException, SQLException {
         ArrayList<Student> students = new ArrayList<>();
-        Connection connection = new StudentDBConfig().getConnection();
+        Connection connection = new DatabaseConfig().getConnection();
         Statement statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery("SELECT * FROM student");
         while (resultSet.next()) {
